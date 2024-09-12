@@ -1,0 +1,26 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+generator json {
+  provider = "prisma-json-types-generator"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Restaurant {
+  id          String   @id @default(uuid())
+  name        String
+  description String
+  rating      Float
+  ratingCount Int
+  category    String
+  city        String
+  priceRange  String
+  images      String[]
+  featured    Json
+  isFavorite  Boolean  @default(false)
+}
