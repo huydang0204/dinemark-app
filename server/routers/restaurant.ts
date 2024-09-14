@@ -8,12 +8,18 @@ export const restaurantRouter = router({
     return prisma.restaurant.findMany()
   }),
   
-  addFavorite: publicProcedure
+  toggleFavorite: publicProcedure
     .input(z.object({ id: z.string() }))
     .mutation(async ({ input }) => {
+      const updateRestaurant = await prisma.restaurant.findUnique({ where: { id: input.id } });
+
+      if (!updateRestaurant) {
+        throw new Error('Restaurant not found');
+      }
+
       return prisma.restaurant.update({
         where: { id: input.id },
-        data: { isFavorite: true },
+        data: { isFavorite: !updateRestaurant.isFavorite },
       })
     }),
 })

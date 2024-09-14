@@ -5,8 +5,14 @@ import RestaurantCard from './restaurant-card';
 import { trpc } from '@/utils/trpc';
 
 const RestaurantList = () => {
+  const utils = trpc.useContext();
   const { data: restaurants, isLoading, error } = trpc.restaurant.getRestaurants.useQuery();
-  const addFavoriteMutation = trpc.restaurant.addFavorite.useMutation();
+  const addFavoriteMutation = trpc.restaurant.toggleFavorite.useMutation({
+    onSuccess: () => {
+      // Invalidate the restaurants query to trigger a refetch
+      utils.restaurant.getRestaurants.invalidate();
+    },
+  });
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
@@ -21,7 +27,6 @@ const RestaurantList = () => {
         <RestaurantCard
           key={restaurant.id}
           {...restaurant}
-          images={restaurant.images}
           onFavoriteClick={handleFavoriteClick}
         />
       ))}
