@@ -4,7 +4,7 @@ const categories = ['전체', '스시·해산물', '장어', '텐푸라', '돈�
 
 const CategoryFilters = () => {
   return (
-    <div className="w-full max-w-3xl mx-auto mb-6 flex space-x-4 overflow-x-auto pb-2">
+    <div className="max-w-3xl mb-6 flex space-x-4 overflow-x-auto pb-2">
       {categories.map((category) => (
         <button
           key={category}

@@ -2,7 +2,7 @@ import React from 'react';
 
 const SearchBar = () => {
   return (
-    <div className="w-full max-w-3xl mx-auto mb-6">
+    <div className="max-w-3xl mb-6">
       <input
         type="text"
         placeholder="맛집 이름을 검색해보세요"
