@@ -2,8 +2,9 @@ import { initTRPC } from '@trpc/server';
 import superjson from 'superjson';
 import { ZodError } from 'zod';
 import { prisma } from '@/server/db';
+import { FetchCreateContextFnOptions } from '@trpc/server/adapters/fetch';
 
-export const createTRPCContext = async (opts: { headers: Headers }) => {
+export const createTRPCContext = async (opts: FetchCreateContextFnOptions) => {
   return {
     prisma,
     ...opts,
