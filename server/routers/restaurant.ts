@@ -1,25 +1,25 @@
 import { z } from 'zod';
-import { router, publicProcedure } from '../trpc';
-import { prisma } from '../db';
+import { createTRPCRouter, publicProcedure } from '@/server/trpc';
 
-export const restaurantRouter = router({
-  
-  getRestaurants: publicProcedure.query(async () => {
-    return prisma.restaurant.findMany()
+export const restaurantRouter = createTRPCRouter({
+  getRestaurants: publicProcedure.query(async ({ ctx }) => {
+    return ctx.prisma.restaurant.findMany();
   }),
-  
   toggleFavorite: publicProcedure
     .input(z.object({ id: z.string() }))
-    .mutation(async ({ input }) => {
-      const updateRestaurant = await prisma.restaurant.findUnique({ where: { id: input.id } });
+    .mutation(async ({ ctx, input }) => {
+      const restaurant = await ctx.prisma.restaurant.findUnique({
+        where: { id: input.id },
+        select: { isFavorite: true }
+      });
 
-      if (!updateRestaurant) {
+      if (!restaurant) {
         throw new Error('Restaurant not found');
       }
 
-      return prisma.restaurant.update({
+      return ctx.prisma.restaurant.update({
         where: { id: input.id },
-        data: { isFavorite: !updateRestaurant.isFavorite },
-      })
+        data: { isFavorite: !restaurant.isFavorite },
+      });
     }),
-})
+});
