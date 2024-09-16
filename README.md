@@ -37,5 +37,5 @@ This is a simple web application that allows users to view a list of restaurants
 
 The application uses tRPC for API communication. The following procedures are available:
 
-- `getRestaurants`: Retrieve all restaurants
-- `addFavorite`: Mark a restaurant as a favorite
+- `getRestaurants`: Retrieve all restaurants, can be filtered by search text and/or categories.
+- `toggleFavorite`: Mark a restaurant as a favorite.
