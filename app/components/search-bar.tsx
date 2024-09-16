@@ -1,14 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-const SearchBar = () => {
+interface SearchBarProps {
+  onSearch: (term: string) => void;
+}
+
+const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    onSearch(searchTerm);
+  };
+
   return (
-    <div className="max-w-3xl mb-6">
+    <form onSubmit={handleSearch} className="mb-4 w-full flex gap-1 justify-center items-center">
       <input
         type="text"
-        placeholder="맛집 이름을 검색해보세요"
-        className="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+        placeholder="Search restaurants..."
+        className="flex-grow p-2 border border-gray-300 rounded"
       />
-    </div>
+      <button type="submit" className="px-4 py-2 bg-blue-500 text-white rounded">
+        Search
+      </button>
+    </form>
   );
 };
 
