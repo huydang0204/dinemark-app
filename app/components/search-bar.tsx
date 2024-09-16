@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 interface SearchBarProps {
   onSearch: (term: string) => void;
 }
 
 const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -13,7 +13,10 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
   };
 
   return (
-    <form onSubmit={handleSearch} className="mb-4 w-full flex gap-1 justify-center items-center">
+    <form
+      onSubmit={handleSearch}
+      className="mb-4 w-full flex gap-1 justify-center items-center"
+    >
       <input
         type="text"
         value={searchTerm}

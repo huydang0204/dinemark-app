@@ -1,9 +1,9 @@
-import React from 'react';
-import Image from 'next/image';
-import { HeartIcon, StarIcon } from '@heroicons/react/24/solid';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
+import React from "react";
+import Image from "next/image";
+import { HeartIcon, StarIcon } from "@heroicons/react/24/solid";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 type RestaurantCardProps = {
   id: string;
@@ -48,11 +48,11 @@ const RestaurantCard: React.FC<RestaurantCardProps> = ({
         <Slider {...sliderSettings}>
           {images.map((image, index) => (
             <div key={index} className="h-48">
-              <Image 
-                src={image} 
-                alt={`${name} - image ${index + 1}`} 
+              <Image
+                src={image}
+                alt={`${name} - image ${index + 1}`}
                 fill
-                style={{objectFit: "contain"}}
+                style={{ objectFit: "contain" }}
               />
             </div>
           ))}
@@ -61,7 +61,9 @@ const RestaurantCard: React.FC<RestaurantCardProps> = ({
           onClick={() => onFavoriteClick(id)}
           className="absolute top-2 right-2 p-2 bg-white rounded-full shadow-md z-10"
         >
-          <HeartIcon className={`h-6 w-6 ${isFavorite ? 'text-red-500' : 'text-gray-400'}`} />
+          <HeartIcon
+            className={`h-6 w-6 ${isFavorite ? "text-red-500" : "text-gray-400"}`}
+          />
         </button>
       </div>
       <div className="p-4 flex flex-col flex-grow">

@@ -1,8 +1,18 @@
+import type { Metadata } from "next";
 import Header from "@/app/components/header";
 import "./globals.css";
-import { Providers } from './provider';
+import { Providers } from "./provider";
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export const metadata: Metadata = {
+  title: "DineMark",
+  description: "Make your dining place today",
+};
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en">
       <body>
