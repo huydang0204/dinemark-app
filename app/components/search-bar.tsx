@@ -21,7 +21,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
         placeholder="Search restaurants..."
         className="flex-grow p-2 border border-gray-300 rounded"
       />
-      <button type="submit" className="px-4 py-2 bg-blue-500 text-white rounded">
+      <button type="submit" className="px-4 py-2 bg-accent text-white rounded">
         Search
       </button>
     </form>
