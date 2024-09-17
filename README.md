@@ -39,3 +39,7 @@ The application uses tRPC for API communication. The following procedures are av
 
 - `getRestaurants`: Retrieve all restaurants, can be filtered by search text and/or categories.
 - `toggleFavorite`: Mark a restaurant as a favorite.
+
+## Deployment
+
+Currently we are deploying to production via Vercel, so just push to 'master' branch and double check the production build on vercel.
